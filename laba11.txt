@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<locale.h>
+#include<math.h>
+#define N 10
+#define SIZE 100
+#pragma warning(disable:4996)
+double computeValue(double x) {
+	return (float)(rand() / 100) - (rand() / 100);
+}
+int main() {
+	float A[N];
+	float temp;
+	float sum=0;
+	float tranform[N];
+	float szn;
+	double array[SIZE];
+	double positiveSum = 0.0, negativeSum = 0.0;
+	int positiveCount = 0, negativeCount = 0;
+
+	for (int i = 0; i < N; i++) {
+		printf("a[%d] = ", i + 1);
+
+		scanf("%f", &temp);
+
+		A[i] = temp;
+
+	}
+	for (int i = 0; i < N; i++)
+	{
+		tranform[i] = A[i] * 2;
+	}
+	setlocale(LC_ALL, "RUS");
+	printf("\n| индекс | исходное значение | новое значение\n" );
+	for (int  i = 0; i < N; i++)
+	{
+		printf("| %d | %.2f | %.2f |\n", i + 1, A[i], tranform[i]);
+	}
+	for (int i = 0; i < N; i++) {
+		sum += A[i]; 
+	}
+	szn = sum / N; 
+	printf("Среднее арифметическое: %.2f\n", szn);
+	//[2;4]
+	double step = (4.0 - 2.0) / SIZE;
+
+	for (int i = 0; i < SIZE; i++) {
+		double x = 2.0 + i * step; 
+		array[i] = computeValue(x); 
+	}
+	for (int i = 0; i < SIZE; i++) {
+		if (array[i] > 0) {
+			positiveSum += array[i];
+			positiveCount++;
+		}
+		else if (array[i] < 0) {
+			negativeSum += array[i];
+			negativeCount++;
+		}
+	}
+	double positiveAverage = (positiveCount > 0) ? (positiveSum / positiveCount) : 0;
+	printf("Имя массива: array\n");
+	printf("Накопленное значение положительных элементов: %.2f\n", positiveSum);
+	printf("Накопленное значение отрицательных элементов: %.2f\n", negativeSum);
+	printf("Количество положительных элементов: %d\n", positiveCount);
+	printf("Количество отрицательных элементов: %d\n", negativeCount);
+	printf("Среднее значение положительных элементов: %.2f\n", positiveAverage);
+	int n = 10;
+
+	double arrai[N];
+	printf("Введите элементы массива:\n");
+	for (int u = 0; u < n; u++) {
+		scanf("%lf", &arrai[u]);
+	}
+	int min_index = 0;
+	for (int u = 1; u < n; u++) {
+		if (fabs(arrai[u]) < fabs(arrai[min_index]))
+		{
+			min_index = u;
+		}
+	}
+	double suma = 0;
+	for (int u = min_index + 1; u < n; u++)
+	{
+		suma += arrai[u];
+	}
+
+	printf("Сумма элементов после минимального по модулю элемента: %.2f\n", suma);
+
+	return 0;
+}

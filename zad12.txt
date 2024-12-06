@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <locale.h>
+int main() {
+    setlocale(LC_ALL, "RUS");
+    char c;
+    short int si;
+    unsigned short int usi;
+    int i;
+    unsigned char uc;
+    wchar_t wc;
+    long long int lli;
+    size_t sizet;
+    float f;
+    double d;
+    signed int si_2;
+
+    char* p1 = &c;
+    char* p2 = (char*)&si;
+    char* p3 = (char*)&usi;
+    char* p4 = (char*)&i;
+    char* p5 = (char*)&uc;
+    char* p6 = (char*)&wc;
+    char* p7 = (char*)&lli;
+    char* p8 = (char*)&sizet;
+    char* p9 = (char*)&f;
+    char* p10 = (char*)&d;
+    char* p11 = (char*)&si_2;
+
+    printf("Размер char: %ld\n", p2 - p1);
+    printf("Размер short int: %ld\n", p3 - p2);
+    printf("Размер unsigned short int: %ld\n", p4 - p3);
+    printf("Размер int: %ld\n", p5 - p4);
+    printf("Размер unsigned char: %ld\n", p6 - p5);
+    printf("Размер wchar_t: %ld\n", p7 - p6);
+    printf("Размер long long int: %ld\n", p8 - p7);
+    printf("Размер size_t: %ld\n", p9 - p8);
+    printf("Размер float: %ld\n", p10 - p9);
+    printf("Размер double: %ld\n", p11 - p10);
+    printf("Размер signed int: %ld\n", sizeof(si_2));
+
+    return 0;
+}

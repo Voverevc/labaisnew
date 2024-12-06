@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <locale.h>
+int main() {
+    setlocale(LC_ALL, "RUS");
+    char* pch;
+    int* pi;
+    double* pd;
+
+    printf("Размер указателя типа char: %lu байт\n", sizeof(pch));
+    printf("Размер указателя типа int: %lu байт\n", sizeof(pi));
+    printf("Размер указателя типа double: %lu байт\n", sizeof(pd));
+
+  float PI = 3.14159, * p1, * p2;
+  p1 = p2 = &PI;// PI  переменная типа float, и у нас есть два указателя p1 и p2, которые ссылаются на адрес PI.
+
+  printf("По адресу p1=%p хранится *p1=%g\n", (void*)p1, *p1);//Вывод адресов указателей p1 и p2  что оба указателя указывают на одну и ту же область памяти, где хранится значение PI.
+  printf("По адресу p2=%p хранится *p2=%g\n", (void*)p2, *p2);//
+  int* pa, x = 5;
+  pa = &x;
+
+  printf("По адресу %p хранится *pa=%d\n", (void*)pa, *pa);
+  pa++;
+  printf("По адресу %p хранится *pa=%d\n", (void*)pa, *pa);
+  pa--;
+  printf("По адресу %p хранится *pa=%d\n", (void*)pa, *pa);
+
+      float array[10] = { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9, 10.0 };
+      float* ptr_a;
+
+      // 4.1: Проверка адреса массива
+      printf("Адрес массива: %p\n", (void*)array);
+      printf("Адрес первого элемента: %p\n", (void*)&array[0]);
+      printf("Адрес массива (как указатель): %p\n", (void*)&array);
+
+      // 4.2: Установка указателя на начало массива
+      ptr_a = array; // или ptr_a = &array[0];
+      printf("ptr_a (начало массива) = %p, *ptr_a = %f\n", (void*)ptr_a, *ptr_a);
+
+      ptr_a++;
+      printf("ptr_a (первый элемент) = %p, *ptr_a = %f\n", (void*)ptr_a, *ptr_a);
+
+      ptr_a += 4; // Переход к элементу с индексом 4
+      printf("ptr_a (пятый элемент) = %p, *ptr_a = %f\n", (void*)ptr_a, *ptr_a);
+
+      ptr_a -= 2; // Возврат к элементу с индексом 3
+      printf("ptr_a (четвертый элемент) = %p, *ptr_a = %f\n", (void*)ptr_a, *ptr_a);
+
+      // 4.3: Проход по массиву с увеличением указателя на 2
+      for (int i = 0; i < 10; i += 2) {
+          ptr_a = &array[i];
+          printf("array[%d] = %f\n", i, *ptr_a);
+      }
+
+      // 4.4: Проход по массиву в обратном порядке
+      ptr_a = &array[9]; 
+      for (int i = 9; i >= 0; i--) {
+          printf("array[%d] = %f\n", i, *ptr_a);
+          ptr_a--; 
+      }
+      int y = 0x12345678; 
+      int* prt; 
+      unsigned char* a1, * a2, * a3, * a4; 
+      unsigned char* a; 
+
+      prt = &y; 
+      a = (unsigned char*)prt; 
+      a1 = a + 3; 
+      a2 = a + 2; 
+      a3 = a + 1; 
+      a4 = a; 
+
+      printf("8.2 x\n 8.2 x\n 8.2 x\n 8.2 x\n", *a1, *a2, *a3, *a4);
+
+  return 0;
+}

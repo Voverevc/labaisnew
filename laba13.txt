@@ -1,0 +1,22 @@
+#include <stdio.h>  
+#include <string.h> 
+
+int main(void) {
+    char Snew[100]; 
+    char Name[50];  
+
+    // Шаг 1: Вывод приглашения для ввода имени
+    printf("Please enter your name: ");
+
+    // Шаг 2: Считывание имени пользователя
+    scanf("%s", Name);
+
+    // Шаг 3: Формирование строки с приветствием
+    strcpy(Snew, "Hello, "); 
+    strcat(Snew, Name);      
+
+    // Шаг 4: Вывод приветствия на экран
+    printf("%s!\n", Snew);
+
+    return 0; // Завершение программы
+}
