@@ -113,3 +113,87 @@ int main() {
         printf("\n\nНайдено значение под индексом %d", find_element(array, size, e)); 
     } 
 }
+14...
+#include <stdio.h>
+#include <locale.h>
+#pragma warning (disable:4996)
+#define N  100
+//1
+double* full_elements(double* ptr_array, int n) {
+	for (int i = 0; i < n; i++)
+	{
+		ptr_array[i] = (double)(i + 1);
+	}
+	return ptr_array;
+}
+int put_elements(double* ptr_array, int n) {
+	for (int i = 0; i < n; i++) {
+		printf("array[%2d] = %lf\t", i, ptr_array[i]);
+	}
+	return 0;
+}
+double* calc_elements(double* ptr_array, int n) {
+	for (int i = 0; i < n; i++) {
+		if (ptr_array[i] < 0) {
+			ptr_array[i] = 0;
+		}
+	}
+	return ptr_array;
+}
+//2
+double sum_elements(double* ptr_array, int begin, int end) {
+	double sum = 0.0;
+	for (int i = begin; i <= end; i++) {
+		sum += ptr_array[i];
+	}
+	return sum;
+}int find_element(double* ptr_array, int n, double element) {
+	int i = 0;
+	while (ptr_array[i] != element && i < n) {
+		i++;
+		if (ptr_array[i] == element) {
+			return i;
+		}
+		else {
+			return -1;
+		}
+	}
+}
+//3Поиск порядкового номера минимального значения элементов, кратных k.
+int function(double* ptr_array, int n) {
+	int min_index = 0;
+	for (int i = 0; i < n; i++) {
+		if (ptr_array[i] < 0) {
+			min_index = i;
+		}
+		return min_index;
+	}
+}	
+//1
+int main() {
+	double array[N];
+	int size;
+	setlocale(LC_ALL, "RUS");
+	printf("Введите размер массива ( до %d) > \n", N);
+	scanf("%d", &size);
+
+	full_elements(array, size);
+	put_elements(array, size);//обработка элементов массива и печать
+	//2
+	int a, b;
+	double element;
+	printf("\nВведите индекс начала массива: ");
+	scanf("%d", &a);
+
+	printf("\nВведите индекс конца массива: ");
+	scanf("%d", &b);
+	printf("\nСумма элементов массива:  %lf", sum_elements(array, a, b));
+
+	double e;
+	printf("\n\nВведите искомое значение:  ");
+	scanf_s("%lf", &e);
+
+	if (find_element(array, size, e)) {
+		printf("\n\nНайдено значение под индексом %d", find_element(array, size, e));
+	}
+}
